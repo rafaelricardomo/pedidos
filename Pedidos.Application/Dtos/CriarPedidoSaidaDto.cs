@@ -1,0 +1,1 @@
+public record CriarPedidoSaidaDto(bool sucesso, Guid? idPedido = null);

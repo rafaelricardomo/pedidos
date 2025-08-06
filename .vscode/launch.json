@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Launch (PedidosApi)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Pedidos.Api/bin/Debug/net8.0/Pedidos.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Pedidos.Api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",     
+        "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "false"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Pedidos.Api/Views"
+      }
+    }
+  ]
+}
