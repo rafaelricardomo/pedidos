@@ -48,14 +48,12 @@ public class PedidoRepositoryCache : IPedidoRepository
             IdCliente = pedido.IdCliente,
             Data = pedido.Data,
             Status = pedido.Status,
-            Total = pedido.Total,
             Itens = pedido.Itens.Select(i => new ItemPedidoModel
             {
                 Id = i.Id,
                 Nome = i.Nome,
                 Quantidade = i.Quantidade,
-                PrecoUnitario = i.PrecoUnitario,
-                Valor= i.Valor
+                PrecoUnitario = i.PrecoUnitario
             }).ToList()
         };
 
@@ -71,8 +69,7 @@ public class PedidoRepositoryCache : IPedidoRepository
                 model.Id,
                 i.Nome,
                 i.Quantidade,
-                i.PrecoUnitario,
-                i.Valor
+                i.PrecoUnitario
             )).ToList()
         );
 

@@ -5,7 +5,7 @@ public class ItemPedido
     public string Nome { get; private set; }
     public int Quantidade { get; private set; }
     public decimal PrecoUnitario { get; private set; }
-    public decimal Valor { get; private set; }
+    public decimal Valor => CalcularValor(Quantidade, PrecoUnitario);
     
     public ItemPedido(Guid pedidoId, string nome, int quantidade, decimal precoUnitario)
     {
@@ -16,18 +16,15 @@ public class ItemPedido
         Nome = nome;
         Quantidade = quantidade;
         PrecoUnitario = precoUnitario;
-
-        Valor = CalcularValor(quantidade, precoUnitario);
     }
 
-    public ItemPedido(Guid id, Guid pedidoId, string nome, int quantidade, decimal precoUnitario, decimal valor)
+    public ItemPedido(Guid id, Guid pedidoId, string nome, int quantidade, decimal precoUnitario)
     {
         PedidoId  = pedidoId;
         Id = id;
         Nome = nome;
         Quantidade = quantidade;
         PrecoUnitario = precoUnitario;
-        Valor = valor;
     }
 
     private void Validar(int quantidade, decimal precoUnitario)
