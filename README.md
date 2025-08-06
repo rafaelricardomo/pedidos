@@ -31,5 +31,3 @@ O sistema de envio de pedidos é uma **API** que possibilita consultar e criar n
 
 4. Acesso endereço no seu navegador
 **http://localhost:5000/swagger**
-
-Obs. Verifique as conexões de cada 
