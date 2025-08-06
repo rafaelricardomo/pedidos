@@ -1,0 +1,13 @@
+create database PedidosDb;
+go;
+
+CREATE TABLE Pedidos (
+    Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    IdCliente UNIQUEIDENTIFIER NOT NULL,
+    Data DATETIME2 NOT NULL DEFAULT GETDATE(),
+    Total DECIMAL(18, 2) NOT NULL,
+    Status INT NOT NULL  
+);
+go;
+
+
