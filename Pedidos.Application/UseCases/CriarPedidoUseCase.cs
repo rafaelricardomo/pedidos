@@ -22,7 +22,7 @@ public class CriarPedidoUseCase : ICriarPedidoUseCase
             foreach (var item in pedidoDto.Itens)
                 novoPedido.AdicionarItem(item.Nome, item.Quantidade, item.PrecoUnitario);
 
-            if (novoPedido.Itens == null || !novoPedido.Itens.Any())
+            if (!novoPedido.Validar())
                 throw new Exception("Pedido sem itens.");
 
             await _pedidoRepository.AdicionarAsync(novoPedido);

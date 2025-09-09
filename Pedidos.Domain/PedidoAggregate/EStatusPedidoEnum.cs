@@ -1,5 +1,6 @@
 public enum EStatusPedidoEnum
 {
-    Recebido = 0,
-    Enviado = 1
+    Pendente = 0,
+    Recebido = 1,
+    Cancelado = 2
 }

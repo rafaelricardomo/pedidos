@@ -5,8 +5,9 @@ using MongoDB.Driver;
 
 public interface IItemPedidoMongoRepository
 {
-     Task<List<ItemPedido>?> ListarPorIdPedidoAsync(Guid pedidoId);
+    Task<List<ItemPedido>?> ListarPorIdPedidoAsync(Guid pedidoId);
     Task AdicionarAsync(List<ItemPedido> itensPedido);
+    Task RemoverPorIdPedidoAsync(Guid pedidoId);
 }
 public class ItemPedidoMongoRepository : IItemPedidoMongoRepository
 {
@@ -28,7 +29,12 @@ public class ItemPedidoMongoRepository : IItemPedidoMongoRepository
 
     public async Task<List<ItemPedido>?> ListarPorIdPedidoAsync(Guid pedidoId)
     {
-       return await _collection.Find(x => x.PedidoId == pedidoId).ToListAsync();
+        return await _collection.Find(x => x.PedidoId == pedidoId).ToListAsync();
+    }
+    
+     public async Task RemoverPorIdPedidoAsync(Guid pedidoId)
+    {
+        await _collection.DeleteManyAsync(x => x.PedidoId == pedidoId);
     }
 
 }

@@ -5,6 +5,7 @@ public interface IPedidoSqlRepository
 {
     Task<Pedido?> ObterPorIdAsync(Guid id);
     Task AdicionarAsync(Pedido pedido);
+    Task AtualizarStatusAsync(Pedido pedido);
 }
 public class PedidoSqlRepository : IPedidoSqlRepository
 {
@@ -25,6 +26,22 @@ public class PedidoSqlRepository : IPedidoSqlRepository
         await connection.ExecuteAsync(
             query,
             new { pedido.Id, pedido.IdCliente, pedido.Total, pedido.Status, pedido.Data }
+            );
+
+        await connection.CloseAsync();
+
+    }
+
+     public async Task AtualizarStatusAsync(Pedido pedido)
+    {
+        const string query = @"UPDATE Pedidos SET Status = @Status Where Id = @Id";
+
+        using var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync();
+
+        await connection.ExecuteAsync(
+            query,
+            new { pedido.Id,  pedido.Status }
             );
 
         await connection.CloseAsync();

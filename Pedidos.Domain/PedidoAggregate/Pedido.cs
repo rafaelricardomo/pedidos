@@ -1,3 +1,5 @@
+using System.Net.Sockets;
+
 public class Pedido
 {
     public Guid Id { get; }
@@ -6,11 +8,23 @@ public class Pedido
     public EStatusPedidoEnum Status { get; private set; }
     public List<ItemPedido> Itens { get; private set; }
     public decimal Total => Itens?.Sum(i => i.Valor) ?? 0;
+
+    public bool Validar()
+    {
+        if (Id == Guid.Empty
+            || IdCliente == Guid.Empty
+            || Itens == null
+            || !Itens.Any() 
+            || Total <= 0)
+            return false;
+
+        return true;
+    }
     public Pedido(Guid idCliente)
     {
         Id = Guid.NewGuid();
         Data = DateTime.Now;
-        Status = EStatusPedidoEnum.Recebido;
+        Status = EStatusPedidoEnum.Pendente;
         IdCliente = idCliente;
     }
 
@@ -41,8 +55,15 @@ public class Pedido
         Itens.AddRange(itens);
     }
 
-    public void MarcarStatusComoEnviado()
+    public void MarcarStatusComoRecebido()
     {
-        Status = EStatusPedidoEnum.Enviado;
+        Status = EStatusPedidoEnum.Recebido;
     }
+
+    public void MarcarStatusComoCancelado()
+    {
+        Status = EStatusPedidoEnum.Cancelado;
+    }
+
+
 }
